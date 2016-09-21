@@ -5,12 +5,11 @@ package com.example.HuffmanCode;
  */
 public class Program {
     public static void main(String[] args){
-        String msg = "it was the best of times it was the worst of times";
+        Scanner in = new Scanner(System.in);
+        String msg = in.next();
         Coder coder = new Coder();
         String r = coder.encode(msg);
-        System.out.println(r);
-
-        float s = r.length();
-        System.out.println(s / msg.length() / 8);
+        System.out.print(r + "\n");
+        System.out.print(coder.decode());
     }
 }
