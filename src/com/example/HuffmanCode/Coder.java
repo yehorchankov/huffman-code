@@ -10,16 +10,19 @@ import java.util.Set;
 public class Coder {
     public PriorityQueue<Node> queue;
     public HashMap<Character, String> dict = new HashMap<>();
-
+    public String cdMsg = "";
+    public String dcdMsg = "";
+    public Node root;
+    public int counter = 0;
+    
     public String encode(String msg) {
-        String result = "";
-        Node root = buildTree(msg);
+        root = buildTree(msg);
         dfs(root, "");
         for (int i = 0; i < msg.length(); i++) {
             Character ch = msg.charAt(i);
-            result += dict.get(ch);
+            cdMsg += dict.get(ch);
         }
-        return result;
+        return cdMsg;
     }
 
     public void dfs(Node n, String code) {
@@ -68,7 +71,27 @@ public class Coder {
                 result.put(ch, 1);
             }
         }
-
         return result;
+    }
+    
+    public String decode() {
+    	while (counter < cdMsg.length()) {
+    	  decode(root);
+    	}
+    	return dcdMsg;
+    }
+    
+    public void decode (Node n) {
+    	if (n.isLeaf()) {
+    		dcdMsg += n.data;
+    		return;
+    	}
+    	if (cdMsg.charAt(counter) == '0') {
+    	    counter++;
+		    decode(n.left);
+    	} else if (cdMsg.charAt(counter) == '1') {
+    	    counter++;
+    		decode(n.right);
+    	}
     }
 }
