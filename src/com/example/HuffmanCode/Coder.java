@@ -87,10 +87,10 @@ public class Coder {
     		return;
     	}
     	if (cdMsg.charAt(counter) == '0') {
-    	    counter++;
-		    decode(n.left);
+		counter++;
+		decode(n.left);
     	} else if (cdMsg.charAt(counter) == '1') {
-    	    counter++;
+		counter++;
     		decode(n.right);
     	}
     }
